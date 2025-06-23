@@ -1,14 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
+import { Principal } from "@dfinity/principal";
 
-function Gallery() {
+function Gallery(props) {
+  const [items, setItems] = useState(true);
+  const [loaderHidden, setLoaderHidden] = useState();
+
+function fetchNFTs() {
+  if (props.ids !== undefined) {
+    // 🟦 Case for Discover Events and My Events
+    if (props.role === "eventDiscover" || props.role === "myEvents") {
+      // setLoaderHidden(false);
+      setItems(
+        props.ids.map((event) => (
+          <Item key={event.id} event={event} role={props.role} />
+        ))
+      );
+      // setLoaderHidden(true);
+    } 
+    // 🟩 Case for NFTs (Discover NFTs and My NFTs)
+    else {
+      setItems(
+        props.ids.map((NFTId) => (
+          <Item id={NFTId} key={NFTId.toText()} role={props.role} />
+        ))
+      );
+    }
+  }
+}
+
+  useEffect(() => {
+    fetchNFTs();
+  }, []);
+
   return (
     <div className="gallery-view">
-      <h3 className="makeStyles-title-99 Typography-h3">Discover</h3>
+      {/* <div hidden={props.loaderHidden} className="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div> */}
+      <h3 className="makeStyles-title-99 Typography-h3">{props.title}</h3>
       <div className="disGrid-root disGrid-container disGrid-spacing-xs-2">
         <div className="disGrid-root disGrid-item disGrid-grid-xs-12">
-          <div className="disGrid-root disGrid-container disGrid-spacing-xs-5 disGrid-justify-content-xs-center"></div>
-          <Item />
+          <div className="disGrid-root disGrid-container disGrid-spacing-xs-5 disGrid-justify-content-xs-center">
+            {items}
+          </div>
         </div>
       </div>
     </div>

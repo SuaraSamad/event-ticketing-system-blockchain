@@ -13,11 +13,8 @@ type Event =
 service : {
   completePurchase: (principal, principal, principal) -> (text);
   createEvent: (text, text, text, text, text, nat, nat) -> (text);
-  generateTicketId: (text, nat, nat) -> (text);
   getAllEvents: () -> (vec Event) query;
-  getEventsOwner: (text) -> (principal) query;
   getListedEvents: () -> (vec Event) query;
-  getListedEventsPrice: (text) -> (nat) query;
   getListedNFTPrice: (principal) -> (nat) query;
   getListedNFTs: () -> (vec principal) query;
   getMyEvents: () -> (vec Event);
@@ -29,5 +26,4 @@ service : {
   listEvent: (text) -> (text);
   listItem: (principal, nat) -> (text);
   mint: (vec nat8, text) -> (principal);
-  newTicketOwner: () -> (principal);
 }
