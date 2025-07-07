@@ -7,7 +7,7 @@ A decentralized event ticketing and management system built on the Internet Comp
 - 🎟️ NFT-based ticket minting and ownership
 - 🔐 SHA-256 hash verification for ticket security
 - ⚡ Fast, scalable smart contracts (canisters) on ICP
-- 💬 React-based frontend UI
+- 💬 React based frontend UI
 - 🌐 Hosted on the decentralized web
 
 ## Tech Stack
